@@ -7,19 +7,45 @@ console.log(moment().format('LLLL'));
 
 //$(".saveBtn").click(saveClick);
 var timesArr = ["9:00am", "10:00am", "11:00am", "12:00pm", "1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm"];
-$(function() {
-    $(timesArr).each(function(index) {
-        $('<section').append('row');
-        $('<div>').addClass('hour').text(timesArr);
-        //$('<section').append('row');
-    //var rowBlock = $('<section>').addClass('row');
-    //var timeBlock = $('<div>').addClass('col-md-1 hour').text(moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
-   // timeBlock.attr('data-time', moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
-    //var taskBlock = $('<textarea>').addClass('col-md-10 description');
-    //var saveButton = $('<button>').addClass('col-xs-1 btn saveBtn').html('<i class="fas fa-save"></i>');
-})    
-console.log(timesArr);
+$(timesArr).each(function(index, value) {
+    
+    console.log(value)
 });
+
+
+// $(document).ready(function() {
+//     $(timesArr).each(function(index) {
+//         var blockContain = $('<div>')
+//         .addClass('container page-content')
+//         .append(blockContain);
+//         console.log(blockContain)
+//         var blockRow = $('<section>')
+//         .addClass('row time-block')
+//         .append(blockRow);
+//         var blockTime = $('<div>')
+//         .addClass('col-md-1 hour')
+//         .text(index);
+//         blockTime.append(index);
+//         var blockText = $('<textarea>')
+//         .addClass('col-md-10 description')
+//         .append(blockText);
+//         var blockButton = $('<button>')
+//         .addClass('col-xs-1 btn saveBtn')
+//         .html('<i class="fas fa-save"></i>')
+//         .append(blockButton);
+
+//         console.log.
+      
+        
+//         //$('<section').append('row');
+//     //var rowBlock = $('<section>').addClass('row');
+//     //var timeBlock = $('<div>').addClass('col-md-1 hour').text(moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
+//    // timeBlock.attr('data-time', moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
+//     //var taskBlock = $('<textarea>').addClass('col-md-10 description');
+//     //var saveButton = $('<button>').addClass('col-xs-1 btn saveBtn').html('<i class="fas fa-save"></i>');
+// })    
+// console.log(timesArr);
+// });
 
 
 function colorChange() {
