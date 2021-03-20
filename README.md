@@ -1,20 +1,12 @@
 # 05 Third-Party APIs: Work Day Scheduler
 
-Create a simple calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+## UTA WK4 - Code Quiz: quizCodeWK4
+Week 4 challenge for UTA bootcamp.
 
-The starter code uses the [Moment.js](https://momentjs.com/) library to work with date and time, but feel free to use a different JavaScript solution to handle this functionality since Moment.js is considered a "legacy" project. Learn more about these other solutions in the [Moment.js project status page.](https://momentjs.com/docs/#/-project-status/)
+## GOAL
+Create a work day planner with normal work hours. This project will include text for each hour and save buttons. This schedule has an added CLEAR tasks button.
 
-## User Story
-
-```
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
-```
-
-## Acceptance Criteria
-
-```
+Acceptance Criteria
 GIVEN I am using a daily planner to create a schedule
 WHEN I open the planner
 THEN the current day is displayed at the top of the calendar
@@ -28,19 +20,18 @@ WHEN I click the save button for that timeblock
 THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
-```
 
-The following animation demonstrates the application functionality:
+Contributing
+There was much help to build a working product. Credit goes to:
 
-![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
+    1. Kelly Gowing - She helped with initial layout and javascript.
+   
+    2. Stephany Comacho - Who had a terrific page with a fix for time AM/PM (I just had to have it)
 
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
+    3. Shirley Rivera - Had a great working planner and was the inspiration for the iterative sections                
+   
+    4. Using jQuery - https://www.youtube.com/watch?v=G9gXLF-EPcM This video was awesome for helping get this going with JQuery functions
+    
+    5. Hours of Google searching and preparing to pull all my hair out again.
 - - -
 © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
