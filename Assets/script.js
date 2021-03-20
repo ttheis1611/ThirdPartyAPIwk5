@@ -1,81 +1,63 @@
-
-var currentDate = document.getElementById('currentDay');
- currentDate.innerHTML = moment().format('LLLL');
-
-console.log(moment().format('LLLL'));
+// Declare variables for time
+var currentDate = moment().format('LLLL');
 
 
-//$(".saveBtn").click(saveClick);
-var timesArr = ["9:00am", "10:00am", "11:00am", "12:00pm", "1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm"];
-$(timesArr).each(function(index, value) {
-    
-    console.log(value)
-});
-
-
-// $(document).ready(function() {
-//     $(timesArr).each(function(index) {
-//         var blockContain = $('<div>')
-//         .addClass('container page-content')
-//         .append(blockContain);
-//         console.log(blockContain)
-//         var blockRow = $('<section>')
-//         .addClass('row time-block')
-//         .append(blockRow);
-//         var blockTime = $('<div>')
-//         .addClass('col-md-1 hour')
-//         .text(index);
-//         blockTime.append(index);
-//         var blockText = $('<textarea>')
-//         .addClass('col-md-10 description')
-//         .append(blockText);
-//         var blockButton = $('<button>')
-//         .addClass('col-xs-1 btn saveBtn')
-//         .html('<i class="fas fa-save"></i>')
-//         .append(blockButton);
-
-//         console.log.
-      
-        
-//         //$('<section').append('row');
-//     //var rowBlock = $('<section>').addClass('row');
-//     //var timeBlock = $('<div>').addClass('col-md-1 hour').text(moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
-//    // timeBlock.attr('data-time', moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
-//     //var taskBlock = $('<textarea>').addClass('col-md-10 description');
-//     //var saveButton = $('<button>').addClass('col-xs-1 btn saveBtn').html('<i class="fas fa-save"></i>');
-// })    
-// console.log(timesArr);
-// });
-
-
-function colorChange() {
-    $('textarea').each(function () {
-        var currentHour = parseInt(moment().hours());
-        var textData = $('textarea').data('time');
-        if (textData < currentHour) {
-            $('textarea').removeClass("present");
-            $('textarea').removeClass("future");
-            $('textarea').addClass("past");
-           
-        }
-        else if (textData === currentHour) {
-            $('textarea').removeClass("past");
-            $('textarea').removeClass("future");
-            $('textarea').addClass("present");
-        }
-        else {
-            $('textarea').removeClass("past");
-            $('textarea').removeClass("present");
-            $('textarea').addClass("future");
-        }
-        console.log(currentHour);
-        
-    });
+// Use clear all tasks button
+function clearTask() {
+    localStorage.clear();
+    location.reload();
 };
-colorChange();
 
+// Use textKey to acces local storage
+function getLocalStorage(textKey) {
+    let value = localStorage.getItem(textKey);
+    if (value) {
+        $(`#text${textKey}`).text(value);
+    }
+};
 
-// $('.saveBtn').on('click', function() {
+// Load schedule for current day and time
+$(document).ready(function () {
+    $("#currentDay").text(moment().format('LLLL'));
+    var currentHour = moment().hours();
+    for (let i = 9; i < 18; i++) {
+        var rowContain = $(`<div data-time=${i} id='${i}' class="row time-block"></div>`);
+        var hourTime = $('<div class="col-md-1 hour">' + formatAMPM(i) + '</div>');
 
-//     localStorage.setItem($(this).siblings('div.hour').attr('data-time'), $(this).siblings('textarea').val())
-// });
+// Fix for AM/PM hours
+        function formatAMPM(hours) {
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            return hours + ampm;
+        }
+    formatAMPM();
+
+        // Create the TEXT AREA with color changes by time
+        var columnText = $(`<textarea id=text${i} class="col-md-10 description" placeholder="Enter task input here..."></textarea>`);
+        if (i == currentHour) {
+            columnText.addClass("present");
+        } else if (currentHour > i) {
+            columnText.addClass("past");
+        } else if (currentHour < i) {
+            columnText.addClass('future');
+        };
+        // Create the SAVE button
+        var saveButton = $(`<button id=${i} class="col-xs-1 btn saveBtn fas fa-save"></button>`);
+
+        // Commit append container by time
+        $(".container").append(rowContain);
+        rowContain.append(hourTime);
+        rowContain.append(columnText);
+        rowContain.append(saveButton);
+
+        getLocalStorage(i);
+    }
+    //  Save button function to local storage
+    var saveBtn = $('.saveBtn');
+    saveBtn.on('click', function () {
+        let eventId = $(this).attr('id');
+        let eventText = $(this).siblings('.description').val();
+        localStorage.setItem(eventId, eventText);
+    });
+});
